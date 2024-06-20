@@ -1,0 +1,140 @@
+<div class="menu-especialista">
+  <div class="header-bar">
+    <div class="header-content">
+      <div class="title">
+        <h1>SISVITA</h1>
+      </div>
+      <div class="header-center">
+        <marquee scrollAmount="9px">
+          <h1>FISI-Ingeniería de Sistemas</h1>
+        </marquee>
+      </div>
+      <div class="logo">
+        <img src="/assets/unmsm.png" alt="UNMSM Logo">
+        <span>UNMSM</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="content">
+    <div class="sidebar">
+      <div class="user-info">
+        <div class="user-icon">
+          <img src="/assets/usuario.png" alt="User Icon">
+        </div>
+        <div class="user-details">
+          <p>{{ nombres }} {{ apellidoPaterno }} {{ apellidoMaterno }}</p>
+        </div>
+      </div>
+      <ul class="menu-options">
+        <li><a href="#" (click)="selectOption('inicio'); $event.preventDefault();">Inicio</a></li>
+        <li><a href="#" (click)="selectOption('actualizar-perfil'); $event.preventDefault();">Actualizar perfil</a></li>
+        <li><a href="#" (click)="selectOption('consulta'); $event.preventDefault();">Consulta</a></li>
+      </ul>
+      <div class="logout">
+        <a href="#" (click)="logout()">Cerrar sesión</a>
+      </div>
+    </div>
+
+    <div class="main-content">
+      <div *ngIf="selectedOption === 'inicio'">
+        <div class="header">
+          <h1>Mi Informacion</h1>
+        </div>
+        <div class="welcome-content">
+          <div class="info-box">
+            <p><strong>Nombre:</strong> {{ nombres }}</p>
+            <p><strong>Apellidos:</strong> {{ apellidoPaterno }} {{ apellidoMaterno }}</p>
+            <p><strong>Sexo:</strong> {{ sexo }}</p>
+            <p><strong>Telefono:</strong> {{ telefono }}</p>
+            <p><strong>Departamento:</strong> {{ departamento }}</p>
+            <p><strong>Provincia:</strong> {{ provincia }}</p>
+            <p><strong>Distrito:</strong> {{ distrito }}</p>
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="selectedOption === 'actualizar-perfil'">
+        <h2>Actualizar perfil</h2>
+        <!-- Contenido para actualizar perfil -->
+      </div>
+
+      <div *ngIf="selectedOption === 'consulta'">
+        <h2>Consulta</h2>
+        <div class="table-container">
+          <table class="styled-table">
+            <thead>
+              <tr>
+                <th>Nombre</th>
+                <th>Apellidos</th>
+                <th>Tipo de test</th>
+                <th>Fecha</th>
+                <th>Puntaje</th>
+                <th>Calificación</th>
+                <th>Semaforo</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let puntuacion of puntuaciones" (click)="selectPuntuacion(puntuacion)" [class.selected]="puntuacion === selectedPuntuacion">
+                <td>{{ puntuacion.nombre }}</td>
+                <td>{{ puntuacion.apellido_paterno }} {{ puntuacion.apellido_materno }}</td>
+                <td>{{ puntuacion.tipo_test }}</td>
+                <td>{{ puntuacion.fecha.split(' ')[0] }}</td>
+                <td>{{ puntuacion.puntaje_total }}</td>
+                <td>{{ puntuacion.calificacion }}</td>
+                <td>
+                  <div class="semaforo" [ngClass]="{
+                    'verde': puntuacion.color === 'verde',
+                    'ambar': puntuacion.color === 'ambar',
+                    'rojo': puntuacion.color === 'rojo'
+                  }"></div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <button [disabled]="!selectedPuntuacion" (click)="evaluar()" class="eval-button">Evaluar</button>
+        </div>
+        <!-- Contenedor para el mapa de calor -->
+        <div id="heatmap" style="height: 400px; width: 100%; margin-top: 20px;"></div>
+      </div>
+
+      <div *ngIf="selectedOption === 'evaluar'">
+        <h2>Evaluar Resultados Test</h2>
+        <div class="evaluation-section">
+          <div class="section1">
+            <p><strong>Nombre:</strong> {{ selectedPuntuacion.nombre }}</p>
+            <p><strong>Apellidos:</strong> {{ selectedPuntuacion.apellido_paterno }} {{ selectedPuntuacion.apellido_materno }}</p>
+            <p><strong>Tipo de test:</strong> {{ selectedPuntuacion.tipo_test }}</p>
+            <p><strong>Puntaje:</strong> {{ selectedPuntuacion.puntaje_total }}</p>
+            <p><strong>Calificación:</strong> {{ selectedPuntuacion.calificacion }}</p>
+            <p><strong>Semaforo:</strong> <span [class]="selectedPuntuacion.color"></span></p>
+            <p><strong>Fecha:</strong> {{ selectedPuntuacion.fecha.split(' ')[0] }}</p>
+          </div>
+          <div class="section2">
+            <h3>Preguntas y Respuestas del Test</h3>
+            <ul>
+              <li *ngFor="let pregunta of preguntas">
+                <strong>{{ pregunta.pregunta }}:</strong> {{ pregunta.respuesta }}
+              </li>
+            </ul>
+          </div>
+          <div class="section3">
+            <label for="observaciones">Observaciones:</label>
+            <textarea id="observaciones" [(ngModel)]="observaciones"></textarea>
+
+            <label for="nivelAnsiedad">Nivel de ansiedad:</label>
+            <input type="text" id="nivelAnsiedad" [(ngModel)]="nivelAnsiedad">
+
+            <label for="solicitudCita">Invitar a una Cita:</label>
+            <select id="solicitudCita" [(ngModel)]="solicitudCita">
+              <option value="Si">Si</option>
+              <option value="No">No</option>
+            </select>
+
+            <button (click)="guardarObservacion()">Guardar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,81 @@
+.header {
+  background-color: #003366;
+  padding: 10px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.header .logo, .header .unmsm-logo {
+  height: 50px;
+}
+
+.header .title {
+  color: white;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.content {
+  text-align: center;
+  padding: 20px;
+}
+
+.content .welcome-message {
+  margin-bottom: 20px;
+}
+
+.content .welcome-message h1 {
+  font-size: 36px;
+}
+
+.content .welcome-message p {
+  font-size: 18px;
+  margin: 20px 0;
+}
+
+.content .images {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.content .background-image {
+  width: 100%;
+  height: auto;
+}
+
+.content .foreground-image {
+  position: absolute;
+  top: 10%;
+  right: 10%;
+  width: 30%;
+  height: auto;
+  border: 2px solid white;
+}
+
+.terms {
+  margin-top: 20px;
+}
+
+.terms a {
+  color: #0056b3;
+  text-decoration: none;
+}
+
+.terms a:hover {
+  text-decoration: underline;
+}
+
+.footer {
+  margin-top: 20px;
+  font-size: 14px;
+}

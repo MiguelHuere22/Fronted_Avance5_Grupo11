@@ -1,0 +1,132 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden; /* Evita las barras de desplazamiento */
+  font-family: Arial, sans-serif;
+}
+
+.background {
+  background-image: url('/assets/fondo.avif'); /* Asegúrate de que esta ruta sea correcta */
+  background-size: cover; /* Asegura que la imagen cubra todo el fondo */
+  background-position: center center; /* Centra la imagen en el fondo */
+  background-repeat: no-repeat; /* Evita la repetición de la imagen */
+  height: 100vh; /* Asegura que ocupe toda la altura de la ventana */
+  width: 100vw; /* Asegura que ocupe todo el ancho de la ventana */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: fixed; /* Para asegurarse de que los elementos dentro de .background estén posicionados correctamente */
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center; /* Asegura que los elementos estén centrados verticalmente */
+  width: 100%;
+  padding: 10px;
+  background-color: #004d5c;
+  color: white;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  box-sizing: border-box;
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+  margin-left: 20px; /* Ajusta el espacio según sea necesario */
+}
+
+.unmsm-logo {
+  display: flex;
+  align-items: center; /* Alinea verticalmente el texto y la imagen */
+  font-size: 24px;
+  font-weight: bold;
+  margin-right: 20px; /* Ajusta el espacio según sea necesario */
+  white-space: nowrap; /* Evita que el texto se divida en varias líneas */
+}
+
+.unmsm-logo img {
+  width: 50px;
+  height: auto;
+  margin-left: 0.5rem;
+  margin-right: 1rem;
+}
+
+.login-box {
+  background: rgba(211, 211, 211, 0.6); /* Color plomo más transparente */
+  border-radius: 20px;
+  padding: 80px 100px; /* Ajusta el padding para agrandar el cuadro */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  z-index: 2;
+}
+
+.user-icon img {
+  width: 100px;
+  border-radius: 50%;
+  margin-bottom: 20px; /* Añadir margen inferior para separación */
+}
+
+h2 {
+  margin: 20px 0;
+}
+
+.input-group {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.input-group i {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #aaa;
+}
+
+input[type="text"],
+input[type="password"] {
+  width: 100%;
+  padding: 10px 10px 10px 40px; /* Ajusta el padding según sea necesario */
+  font-size: 16px; /* Ajusta el tamaño de la fuente según sea necesario */
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+button {
+  width: 100%;
+  padding: 15px; /* Aumenta el padding para agrandar el botón */
+  background-color: #003d5c;
+  border: none;
+  border-radius: 15px; /* Esquinas más redondeadas */
+  color: white;
+  font-size: 18px; /* Aumenta el tamaño de la fuente */
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #002b45;
+}
+
+.register-link {
+  margin-top: 10px;
+}
+
+.register-link a {
+  color: #003d5c;
+  text-decoration: none;
+}
+
+.register-link a:hover {
+  text-decoration: underline;
+}

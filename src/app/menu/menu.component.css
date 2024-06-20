@@ -1,0 +1,358 @@
+/* Estilos generales para la página */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+/* Estilos para el encabezado */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 10px;
+  background-color: #004d5c;
+  color: white;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  box-sizing: border-box;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+}
+
+.header-right img {
+  width: 50px;
+  height: auto;
+  margin-left: 0.5rem;
+  margin-right: 1rem;
+}
+
+.header-left span, .header-right span {
+  font-size: 1.5rem;
+}
+
+
+
+/* Estilos para la sección de bienvenida */
+.welcome-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-image: url('/assets/FondoSala.png');
+  background-size: cover;
+  background-position: center;
+  padding: 2rem;
+  flex-grow: 1;
+  width: 100%;
+  box-sizing: border-box;
+  margin: 0;
+  position: relative;
+}
+
+.welcome-text {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  background-color: rgba(255, 255, 255, 0.7);
+  padding: 2rem;
+  border-radius: none;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  width: 50%;
+  box-sizing: border-box;
+  overflow-y: auto; /* Permite scroll si el contenido es muy alto */
+  height: 100%;
+}
+
+.welcome-text h2 {
+  font-size: 3rem;
+  color: #004080;
+  text-align: center;
+  padding-top: 3rem;
+}
+
+.welcome-text p {
+  font-size: 2rem;
+  color: #333;
+  margin: 5rem;
+  
+}
+
+.welcome-image {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 65rem;
+}
+
+.welcome-image img {
+  width: 100%;
+  max-width: 600px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Media queries para hacer el sitio responsive */
+@media (max-width: 1024px) {
+  .welcome-section {
+    flex-direction: column;
+    padding-top: 5em;
+  }
+
+  
+
+  .welcome-image {
+    width: 40%;
+    margin-left: 30rem;
+    order: -1;
+  }
+
+  .welcome-image img {
+    max-width: 100%;
+    height: auto;
+  }
+  .welcome-text h2 {
+    font-size: 3rem;
+  }
+  
+  .welcome-text p {
+    padding-top: 3rem;
+    font-size: 2rem;
+    margin: 0rem;
+    text-align: left;
+    
+  }
+}
+@media (max-width: 768px) {
+  .welcome-section {
+    flex-direction: column-reverse;
+    padding-top: 5rem;
+  }
+
+  .welcome-text {
+    width: 50%;
+    padding: 0rem;
+    text-align: center;
+    position: static;
+    transform: none;
+    height: auto;
+    margin-bottom: 1rem;
+  }
+
+  .welcome-text h2 {
+    font-size: 2rem;
+  }
+
+  .welcome-text p {
+    font-size: 1rem;
+    margin: 1rem 0;
+  }
+
+  .welcome-image {
+    margin-left: 0;
+    margin-bottom: 1rem; /* Añade espacio inferior para separar de la bienvenida */
+  }
+
+  .welcome-image img {
+    max-width: 100%;
+    height: auto; /* Ajusta la altura automáticamente */
+  }
+}
+
+@media (max-width: 480px) {
+  .header-left span, .header-right span {
+    font-size: 1rem;
+  }
+
+  .menu-button {
+    font-size: 1rem;
+    margin-right: 1rem;
+    margin-left: 1rem;
+  }
+  .welcome-section{
+    margin-top: 5rem;
+  }
+  .welcome-text{
+   width: 90%;
+   
+  }
+  .welcome-text h2 {
+    font-size: 1.2rem;
+  }
+
+  .welcome-text p {
+    font-size: 0.9rem;
+    margin: 0.5rem 0;
+  }
+
+  .welcome-image img {
+    width: 100%;
+    height: auto; /* Ajusta la altura automáticamente */
+  }
+}
+
+@media (max-width: 480px) {
+  .header-left span, .header-right span {
+    font-size: 1rem;
+  }
+
+  .menu-button {
+    font-size: 1rem;
+    margin-right: 1rem;
+    margin-left: 1rem;
+  }
+
+  .welcome-text h2 {
+    font-size: 1.2rem;
+  }
+
+  .welcome-text p {
+    font-size: 0.9rem;
+    margin: 0.5rem 0;
+  }
+
+  .welcome-image {
+    width: 100%;
+    margin: 0;
+  }
+
+  .welcome-image img {
+    width: 100%;
+    height: auto;
+  }
+}
+
+
+/* Estilos para el menú lateral */
+
+.menu-button {
+  background-color: rgba(0, 61, 92, 1);
+  border-color: #ccc;
+  border-radius: 5px;
+  color: white;
+  font-size: 1.5rem;
+  cursor: pointer;
+  margin-right: 2rem;
+  margin-left: 2rem;
+}
+.side-menu {
+  position: fixed;
+  top: 6.7rem;
+  right: -250px;
+  width: 250px;
+  height: calc(100% - 60px);
+  transition: right 0.3s ease;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.side-menu.open {
+  right: 0;
+}
+
+.menu {
+  background-color: rgb(0, 77, 92,0.9);
+  width: 100%;
+  max-width: 250px;
+  padding: 1rem;
+  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5);
+}
+
+.menu-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.close-menu {
+  background: none;
+  border: none;
+  color: #ccc;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.menu-header .menu-title {
+  font-size: 1.5rem;
+  color: #f4f4f5;
+  text-align: center;
+  width: 100%;
+  margin: 0;
+  margin-right: auto;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+li {
+  margin: 0;
+  border-bottom: 3px solid #fffdfd;
+  width: 100%;
+}
+
+li a {
+  display: block;
+  padding: 1rem;
+  text-decoration: none;
+  color: #f4f4f5;
+  font-size: 1.2rem;
+  transition: background-color 0.3s;
+}
+
+li a:hover {
+  background-color: rgb(47, 56, 79);
+}
+
+/* Estilos para el pie de página */
+footer {
+  background-color: #020202;
+  color: white;
+  padding: 1rem;
+  text-align: center;
+  box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  box-sizing: border-box;
+  z-index: 1;
+}
+
+footer a {
+  color: white;
+  text-decoration: none;
+  margin-right: 1rem;
+  transition: color 0.3s;
+}
+
+footer a:hover {
+  color: #ccc;
+}
+
+footer p {
+  margin: 0;
+}

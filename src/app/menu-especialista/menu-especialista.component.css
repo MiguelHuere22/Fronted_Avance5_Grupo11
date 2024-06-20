@@ -1,0 +1,286 @@
+.menu-especialista {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background-color: #cccccc;
+}
+
+.header-bar {
+  background-color: #004d5c;
+  padding: 10px;
+  color: #fff;
+  z-index: -1;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1;
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.title h1 {
+  margin: 0;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  font-size: 24px;
+  font-weight: bold;
+  margin-right: 20px; /* Ajusta el espacio según sea necesario */
+  white-space: nowrap; /* Evita que el texto se divida en varias líneas */
+}
+
+.logo img {
+  width: 50px;
+  height: auto;
+  margin-left: 0.5rem;
+  margin-right: 1rem;
+}
+
+.sidebar {
+  background-color: #004d5c;
+  color: #fff;
+  width: 250px;
+  min-height: 100vh;
+  padding: 20px 10px;
+  position: fixed;
+  border-right: 10px solid #fff;
+  margin-top: 6rem;
+  left: 0;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  border-bottom: 3px solid #fff;
+  padding-bottom: 10px;
+}
+
+.user-icon img {
+  width: 50px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.user-details p {
+  margin: 0;
+}
+
+.menu-options {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.menu-options li {
+  margin: 10px 0;
+  border-bottom: 3px solid #fff;
+  padding-bottom: 10px;
+}
+
+.menu-options a {
+  color: #fff;
+  text-decoration: none;
+  display: block;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.menu-options a:hover {
+  background-color: #067ba3;
+}
+
+.logout a {
+  color: #fff;
+  text-decoration: none;
+  display: block;
+  margin-top: 20px;
+}
+
+.logout a:hover {
+  text-decoration: underline;
+}
+
+.main-content {
+  margin-left: 270px;
+  padding: 20px;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.welcome-content {
+  text-align: center;
+  background: rgba(255, 255, 255, 0.8);
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 800px;
+  width: 100%;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  position: absolute; /* Permite el uso de coordenadas */
+  top: 50%; /* Centrado verticalmente */
+  left: 60%; /* Centrado horizontalmente */
+  transform: translate(-50%, -50%); /* Ajusta la posición para que el centro del contenedor coincida con el centro de la pantalla */
+}
+
+.info-box {
+  background-color: #d0e8f2;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: left;
+  display: inline-block;
+  margin-top: 20px;
+}
+
+/* Styles for table and button */
+.table-container {
+  margin-top: 50px; /* Ajusta este margen para mover la tabla hacia abajo */
+  text-align: center;
+}
+
+.styled-table {
+  border-collapse: collapse;
+  margin: 25px auto;
+  font-size: 0.9em;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  min-width: 600px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.styled-table thead tr {
+  background-color: #009879;
+  color: #ffffff;
+  text-align: left;
+}
+
+.styled-table th,
+.styled-table td {
+  padding: 12px 15px;
+}
+
+.styled-table tbody tr {
+  border-bottom: 1px solid #dddddd;
+}
+
+.styled-table tbody tr:nth-of-type(even) {
+  background-color: #f3f3f3;
+}
+
+.styled-table tbody tr:last-of-type {
+  border-bottom: 2px solid #009879;
+}
+
+.styled-table tbody tr:hover {
+  background-color: #f1f1f1;
+}
+
+.styled-table tbody tr.selected {
+  background-color: #c1e1c5;
+}
+
+.eval-button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #004d5c;
+  color: #ffffff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1em;
+}
+
+.eval-button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+/* Semaforo styles */
+.semaforo {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.verde {
+  background-color: green;
+}
+
+.ambar {
+  background-color: yellow;
+}
+
+.rojo {
+  background-color: red;
+}
+
+/* Style for selected row */
+.selected {
+  background-color: #d3d3d3;
+}
+
+/* Styles for evaluation sections */
+.evaluation-section {
+  margin-top: 20px;
+}
+
+.evaluation-section .section1,
+.evaluation-section .section2,
+.evaluation-section .section3 {
+  border: 1px solid #ccc;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+}
+
+.section2 ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.section2 ul li {
+  margin-bottom: 10px;
+}
+
+.section3 label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.section3 textarea,
+.section3 input[type="text"],
+.section3 select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+.section3 button {
+  padding: 10px 20px;
+  background-color: #004d5c;
+  color: #ffffff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1em;
+}
+
+.section3 button:hover {
+  background-color: #003f4f;
+}
+#heatmap {
+  height: 400px;
+  margin-top: 20px;
+}

@@ -1,0 +1,239 @@
+/* Estilos generales */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #004d5c;
+  padding: 10px;
+  color: white;
+  width: 100%;
+  box-sizing: border-box;
+  margin: 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.right-section {
+  display: flex;
+  align-items: center;
+}
+
+.unmsm-section {
+  display: flex;
+  align-items: center;
+}
+
+.unmsm-logo {
+  width: 50px;
+  height: auto;
+  margin-right: 10px;
+}
+
+.unmsm-text {
+  font-size: 1.5rem;
+}
+
+.user-selection-container {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 0;
+  width: 100%;
+  background-color: #f4f4f5;
+  box-sizing: border-box;
+  height: calc(100vh - 80px);
+  margin-top: 3%;
+  left: 0;
+}
+
+.user-option {
+  position: relative;
+  width: 100%;
+  height: 97%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+  top:0;
+  left: 0;
+  margin: 0;
+}
+
+.user-image {
+  width: 95%;
+  height: 80%;
+  
+}
+
+.user-option-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center; /* Alineación horizontal */
+  justify-content: left; /* Alineación horizontal */
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  text-align: center;
+}
+
+.user-option-content h2 {
+  font-size: 3rem;
+  text-align: left;
+  margin-left: 50px; /* Espacio entre texto y botón */
+  margin-top:15rem;
+}
+
+.user-option-content button {
+  background-color: rgb(153, 156, 160,0.7);
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 2rem;
+  margin-left: 22rem;
+  margin-top:13rem;
+  width: 15rem;
+}
+
+.terms {
+  text-align: center;
+  margin: 20px 0;
+}
+
+.terms a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+
+/* Estilos para el menú lateral */
+.menu-button {
+  background-color: rgba(0, 61, 92, 1);
+  border-color: #ccc;
+  border-radius: 5px;
+  color: white;
+  font-size: 1.5rem;
+  cursor: pointer;
+  margin-right: 2rem;
+  margin-left: 2rem;
+}
+.side-menu {
+  position: fixed;
+  top: 6.7rem;
+  right: -250px;
+  width: 250px;
+  height: calc(100% - 60px);
+  transition: right 0.3s ease;
+  display: flex;
+  justify-content: flex-end;
+}
+.side-menu.open {
+  right: 0;
+}
+
+.menu {
+  background-color: rgb(0, 77, 92,0.9);
+  width: 100%;
+  max-width: 250px;
+  padding: 1rem;
+  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5);
+}
+
+.menu-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.close-menu {
+  background: none;
+  border: none;
+  color: #ccc;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.menu-header .menu-title {
+  font-size: 1.5rem;
+  color: #f4f4f5;
+  text-align: center;
+  width: 100%;
+  margin: 0;
+  margin-right: auto;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+li {
+  margin: 0;
+  border-bottom: 3px solid #fffdfd;
+  width: 100%;
+}
+
+li a {
+  display: block;
+  padding: 1rem;
+  text-decoration: none;
+  color: #f4f4f5;
+  font-size: 1.2rem;
+  transition: background-color 0.3s;
+}
+
+li a:hover {
+  background-color: rgb(47, 56, 79);
+}
+
+
+footer {
+  background-color: #000000;
+  color: white;
+  text-align: center;
+  padding: 5rem;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 19%;
+  margin: 0;
+  box-sizing: border-box;
+  left: 0;
+}
+
+footer a {
+  display: block;
+  margin-bottom: 10px;
+  color: aliceblue;
+  text-decoration: none;
+}
+
+footer p {
+  margin: 0;
+  padding: 0 0 10px;
+}

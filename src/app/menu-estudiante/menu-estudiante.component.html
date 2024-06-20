@@ -1,0 +1,233 @@
+<div class="menu-estudiante">
+  <div class="header-bar">
+    <div class="header-content">
+      <div class="title">
+        <h1>SISVITA</h1>
+      </div>
+      <div class="header-center">
+        <marquee scrollAmount="9px">
+          <h1>FISI-Ingeniería de Sistemas</h1>
+        </marquee>
+      </div>
+      <div class="logo">
+        <img src="/assets/unmsm.png" alt="UNMSM Logo">
+        <span>UNMSM</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="content">
+    <div class="sidebar">
+      <div class="user-info">
+        <div class="user-icon">
+          <img src="/assets/usuario.png" alt="User Icon">
+        </div>
+        <div class="user-details">
+          <p>{{ nombres }} {{ apellidoPaterno }} {{ apellidoMaterno }}</p>
+        </div>
+      </div>
+      <ul class="menu-options">
+        <li><a href="#" (click)="selectOption('bienvenida'); $event.preventDefault();">Bienvenida</a></li>
+        <li><a href="#" (click)="selectOption('realizar-test'); $event.preventDefault();">Realizar test de ansiedad</a></li>
+        <li><a href="#" (click)="selectOption('consultar-resultados'); $event.preventDefault();">Consultar resultados</a></li>
+        <li><a href="#" (click)="selectOption('solicitar-cita'); $event.preventDefault();">Solicitar cita</a></li>
+      </ul>
+      <div class="logout">
+        <a href="#" (click)="logout()">Cerrar sesión</a>
+      </div>
+    </div>
+
+    <div class="main-content">
+      <div *ngIf="selectedOption === 'bienvenida'">
+        <div class="header">
+          <h1>Bienvenido</h1>
+        </div>
+        <div class="welcome-content">
+          <p>¡Bienvenido a nuestra página web de ayuda para la ansiedad! Estamos aquí para ofrecerte el apoyo y los recursos que necesitas para manejar la ansiedad y recuperar el control de tu vida. Entendemos lo desafiante que puede ser enfrentarse a la ansiedad, pero queremos que sepas que no estás solo. Nuestra comunidad está aquí para brindarte orientación, consejos prácticos y un espacio seguro para compartir tus experiencias.</p>
+          <img src="assets/logoMenuEstudiante.png" alt="Logo Menu Estudiante">
+        </div>
+      </div>
+
+      <div *ngIf="selectedOption === 'realizar-test'" class="realizar-test">
+        <div class="test-header">
+          <h2>Tipo de test</h2>
+          <div class="d1"><h2>Descripción</h2></div>
+        </div>
+        <div class="test-content">
+          <table class="test-table">
+            <tbody>
+              <tr class="test-item">
+                <td class="test-name">Test AMAS-C</td>
+                <td class="test-description">Evalúa los niveles de ansiedad en adultos jóvenes, especialmente en estudiantes universitarios</td>
+                <td><button class="test-button" (click)="responderTest(1)">Responder</button></td>
+              </tr>
+              <tr class="test-item">
+                <td class="test-name">Test Beck</td>
+                <td class="test-description">Parte de una batería más amplia de evaluación psicológica, evaluando múltiples dimensiones, no solo ansiedad</td>
+                <td><button class="test-button" (click)="responderTest(2)">Responder</button></td>
+              </tr>
+              <tr class="test-item">
+                <td class="test-name">Test Zung</td>
+                <td class="test-description">Se utiliza tanto en entornos clínicos como de investigación para evaluar la ansiedad en adultos.</td>
+                <td><button class="test-button" (click)="responderTest(3)">Responder</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div *ngIf="selectedOption === 'consultar-resultados'">
+        <h2>Consultar resultados</h2>
+      </div>
+
+      <div *ngIf="selectedOption === 'solicitar-cita'">
+        <h2>Solicitar cita</h2>
+      </div>
+
+      <div *ngIf="selectedOption === 'realizar-test-amasc'" class="test-amas-c">
+        <div class="contenido-test">
+          <div class="test-cabeza">
+            <h2 text-align="center">Test AMAS-C</h2>
+          </div>
+          <div class="datos-test">
+              <label for="nombres">Nombres:</label>
+              <input type="text" id="nombres" [value]="nombres" readonly>
+              <label for="apellidos">Apellidos:</label>
+              <input type="text" id="apellidos" [value]="apellidoPaterno + ' ' + apellidoMaterno" readonly>
+          </div>
+            <div class="datos-test">
+              <label for="test">Test:</label>
+              <input type="text" id="test" value="Test AMAS-C" readonly>
+              <span>Cantidad de preguntas: {{ preguntas.length }}</span>
+            
+          </div>
+          <form #testForm="ngForm" (ngSubmit)="enviarRespuestas($event)">
+            <table class="cuadro-test">
+              <thead>
+                <tr>
+                  <th>Preguntas</th>
+                  <th class="th-respuestas">Respuestas</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let pregunta of preguntas; let i = index">
+                  <td class="preguntas">{{ i + 1 }}. {{ pregunta.texto }}</td>
+                  <td class="respuestas">
+                    <label>
+                      <input type="radio" [name]="'pregunta_' + i" (change)="registrarRespuesta(pregunta.id_pregunta, 'Sí')" value="Sí">
+                      Sí
+                    </label>
+                    <label>
+                      <input type="radio" [name]="'pregunta_' + i" (change)="registrarRespuesta(pregunta.id_pregunta, 'No')" value="No">
+                      No
+                    </label>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <button type="submit" class="submit-button">Enviar</button>
+          </form>
+          
+          <div *ngIf="mensajeExito" class="success-message">{{ mensajeExito }}</div>
+          <div *ngIf="mensajeError" class="error-message">{{ mensajeError }}</div>
+        </div>
+      </div>
+
+      <div *ngIf="selectedOption === 'realizar-test-beck'" class="test2">
+        <div class="contenido-test">
+          <div class="test-cabeza">
+            <h2>Test-Beck</h2>
+          </div>
+          <div class="datos-test2">
+            <label for="nombres">Nombres:</label>
+            <input type="text" id="nombres" [value]="nombres" readonly>
+            <label for="apellidos">Apellidos:</label>
+            <input type="text" id="apellidos" [value]="apellidoPaterno + ' ' + apellidoMaterno" readonly>
+          </div>
+          <div class="datos-test">
+            <label for="test">Test:</label>
+            <input type="text" id="test" value="Test-Beck" readonly>
+            <span>Cantidad de preguntas: {{ preguntas.length }}</span>
+          </div>
+          <form #testForm="ngForm" (ngSubmit)="enviarRespuestas($event)">
+            <table class="test-table">
+              <thead>
+                <tr>
+                  <th>No</th>
+                  <th>Preguntas</th>
+                  <th>Nunca</th>
+                  <th>Raramente</th>
+                  <th>Algunas veces</th>
+                  <th>A menudo</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let pregunta of preguntas; let i = index">
+                  <td>{{ i + 1 }}</td>
+                  <td>{{ pregunta.texto }}</td>
+
+                  <td><input type="radio" [name]="'pregunta_' + i" (change)="registrarRespuesta(pregunta.id_pregunta, 'Nunca')" value="Nunca"></td>
+                  <td><input type="radio" [name]="'pregunta_' + i" (change)="registrarRespuesta(pregunta.id_pregunta, 'Raramente')" value="Raramente"></td>
+                  <td><input type="radio" [name]="'pregunta_' + i" (change)="registrarRespuesta(pregunta.id_pregunta, 'Algunas veces')" value="Algunas veces"></td>
+                  <td><input type="radio" [name]="'pregunta_' + i" (change)="registrarRespuesta(pregunta.id_pregunta, 'A menudo')" value="A menudo"></td>
+                </tr>
+              </tbody>
+            </table>
+            <button type="submit" class="submit-button">Enviar</button>
+          </form>
+          <div *ngIf="mensajeExito" class="success-message">{{ mensajeExito }}</div>
+          <div *ngIf="mensajeError" class="error-message">{{ mensajeError }}</div>
+        </div>
+      </div>
+      
+
+      <div *ngIf="selectedOption === 'realizar-test-zung'" class="test2">
+        <div class="contenido-test">
+          <div class="test-cabeza">
+            <h2>Test-Zung</h2>
+          </div>
+          <div class="datos-test2">
+            <label for="nombres">Nombres:</label>
+            <input type="text" id="nombres" [value]="nombres" readonly>
+            <label for="apellidos">Apellidos:</label>
+            <input type="text" id="apellidos" [value]="apellidoPaterno + ' ' + apellidoMaterno" readonly>
+          </div>
+          <div class="datos-test">
+            <label for="test">Test:</label>
+            <input type="text" id="test" value="Test-Zung" readonly>
+            <span>Cantidad de preguntas: {{ preguntas.length }}</span>
+          </div>
+          <form #testForm="ngForm" (ngSubmit)="enviarRespuestas($event)">
+            <table class="test-table">
+              <thead>
+                <tr>
+                  <th>No</th>
+                  <th>Preguntas</th>
+                  <th>Muy Pocas Veces</th>
+                  <th>A veces</th>
+                  <th>Muchas Veces</th>
+                  <th>Casi Siempre</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let pregunta of preguntas; let i = index">
+                  <td>{{ i + 1 }}</td>
+                  <td>{{ pregunta.texto }}</td>
+                  <td><input type="radio" [name]="'pregunta_' + i" (change)="registrarRespuesta(pregunta.id_pregunta, 'Muy Pocas Veces')" value="Muy Pocas Veces"></td>
+                  <td><input type="radio" [name]="'pregunta_' + i" (change)="registrarRespuesta(pregunta.id_pregunta, 'A veces')" value="A veces"></td>
+                  <td><input type="radio" [name]="'pregunta_' + i" (change)="registrarRespuesta(pregunta.id_pregunta, 'Muchas Veces')" value="Muchas Veces"></td>
+                  <td><input type="radio" [name]="'pregunta_' + i" (change)="registrarRespuesta(pregunta.id_pregunta, 'Casi Siempre')" value="Casi Siempre"></td>
+                </tr>
+              </tbody>
+            </table>
+            <button type="submit" class="submit-button">Enviar</button>
+          </form>
+          <div *ngIf="mensajeExito" class="success-message">{{ mensajeExito }}</div>
+          <div *ngIf="mensajeError" class="error-message">{{ mensajeError }}</div>
+        </div>
+      </div>
+      
+
+    </div>
+  </div>
+</div>

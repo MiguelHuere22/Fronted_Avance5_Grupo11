@@ -1,0 +1,49 @@
+<div class="container">
+  <header>
+    <div class="header-left">
+      <span>SISVITA</span>
+    </div>
+    <div class="header-center">
+      <marquee scrollAmount="9px">
+        <h1>FISI-Ingeniería de Sistemas</h1>
+      </marquee>
+    </div>
+    <div class="header-right">
+      <img src="assets/unmsm.png" alt="UNMSM Logo">
+      <span>UNMSM</span>
+      <button class="menu-button" (click)="toggleMenu()">&#9776;</button>
+    </div>
+  </header>
+
+  <div class="welcome-section">
+    <div class="welcome-text">
+      <h2>¡Bienvenidos a SISVITA!</h2>
+      <p>SISVITA es un centro especializado en brindar apoyo integral a estudiantes que enfrentan ansiedad y problemas relacionados. Entendemos que la vida académica puede ser estresante y desafiante, y nuestro objetivo es proporcionar un entorno seguro y acogedor donde los estudiantes puedan encontrar el apoyo que necesitan para manejar su ansiedad y mejorar su bienestar general.</p>
+    </div>
+    <div class="welcome-image">
+      <img src="assets/Urgencia.png" alt="Centro de urgencias">
+    </div>
+  </div>
+
+  <div class="side-menu" [class.open]="menuOpen">
+    <div class="menu">
+      <div class="menu-header">
+        <span class="menu-title">MENU</span>
+        <button class="close-menu" (click)="toggleMenu()">X</button>
+      </div>
+      
+      <ul>
+        <li><a (click)="navigateTo('user-selection')">Iniciar sesión</a></li>
+        <li><a href="#">Misión</a></li>
+        <li><a href="#">Servicios ofrecidos</a></li>
+        <li><a href="#">Recursos online</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <footer>
+    <a href="#">Términos y condiciones</a>
+    <p>Sistema de Vigilancia de Transtornos de la Ansiedad (SISVITA)</p>
+    <p>2024</p>
+  </footer>
+</div>

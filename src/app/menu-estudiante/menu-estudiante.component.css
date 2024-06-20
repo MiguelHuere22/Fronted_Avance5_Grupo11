@@ -1,0 +1,617 @@
+.menu-estudiante {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background-color: #cccccc;
+}
+
+.header-bar {
+  background-color: #004d5c;
+  padding: 10px;
+  color: #fff;
+  z-index: -1;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1;
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.title h1 {
+  margin: 0;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  font-size: 24px;
+  font-weight: bold;
+  margin-right: 20px; /* Ajusta el espacio según sea necesario */
+  white-space: nowrap; /* Evita que el texto se divida en varias líneas */
+}
+
+.logo img {
+  width: 50px;
+  height: auto;
+  margin-left: 0.5rem;
+  margin-right: 1rem;
+}
+
+.sidebar {
+  background-color: #004d5c;
+  color: #fff;
+  width: 250px;
+  min-height: 100vh;
+  padding: 20px 10px;
+  position: fixed;
+  border-right: 10px solid #fff;
+  margin-top: 6rem;
+  left: 0;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  border-bottom: 3px solid #fff;
+  padding-bottom: 10px;
+}
+
+.user-icon img {
+  width: 50px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.user-details p {
+  margin: 0;
+}
+
+.menu-options {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.menu-options li {
+  margin: 10px 0;
+  border-bottom: 3px solid #fff;
+  padding-bottom: 10px;
+}
+
+.menu-options a {
+  color: #fff;
+  text-decoration: none;
+  display: block;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.menu-options a:hover {
+  background-color: #067ba3;
+}
+
+.logout a {
+  color: #fff;
+  text-decoration: none;
+  display: block;
+  margin-top: 20px;
+}
+
+.logout a:hover {
+  text-decoration: underline;
+}
+
+.main-content {
+  margin-left: 270px;
+  padding: 20px;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.welcome-content {
+  text-align: center;
+  background: rgba(255, 255, 255, 0.8);
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 800px;
+  width: 100%;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  position: absolute; /* Permite el uso de coordenadas */
+  top: 50%; /* Centrado verticalmente */
+  left: 60%; /* Centrado horizontalmente */
+  transform: translate(-50%, -50%); /* Ajusta la posición para que el centro del contenedor coincida con el centro de la pantalla */
+}
+
+.welcome-content img {
+  margin-top: 20px;
+  height: 150px;
+}
+
+/* Estilos existentes del proyecto */
+
+.realizar-test {
+  margin-top: 10rem;
+  margin-left: 10rem;
+}
+
+.test-header {
+  display: flex;
+  justify-content: space-between;
+  background-color: #f75b5b;
+  color: #fff;
+  padding: 10px;
+  border-radius: 10px;
+  width: 65rem;
+  text-align: center;
+}
+
+.test-header h2 {
+  margin-left: 5rem;
+ 
+}
+
+.d1 h2 {
+  margin-right: 20rem;
+}
+
+.test-table {
+  width: 80%;
+  border-collapse: separate;
+  border-spacing: 0;
+  border: none;
+}
+
+.test-table th, .test-table td {
+  border: none;
+  padding: 10px;
+}
+
+.test-table th {
+  background-color: #e63946;
+  color: #fff;
+}
+
+.test-table tr {
+  border-bottom: 5px solid transparent;
+}
+
+.test-table tr td:last-child {
+  text-align: right;
+}
+
+.test-table tr:hover {
+  background-color: #f1f1f1;
+}
+
+.test-content {
+  position: relative;
+}
+
+.test-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 10px 0;
+}
+
+.test-item .test-name,
+.test-item .test-description {
+  width: 70%;
+}
+
+.test-item button {
+  margin-left: 5rem;
+  border-radius: 10px;
+  width: 5rem;
+}
+
+.test-button {
+  background-color: #04546c;
+  color: #fff;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+.test-button:hover {
+  background-color: #067ba3;
+}
+
+.button-container {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: space-between;
+  padding-top: 15px;
+}
+
+.test-amas-c .contenido-test {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin-top: 8rem;
+}
+
+.test-amas-c .test-cabeza {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  text-align: center;
+}
+.test-amas-c .test-cabeza h2{
+  width: 100%;
+  margin: 0;
+
+}
+.test-amas-c .test-cabeza label {
+  margin-right: 10px;
+}
+
+.test-amas-c .test-cabeza input[type="text"] {
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.test-amas-c .test-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.test-amas-c .test-table th,
+.test-amas-c .test-table td {
+  padding: 10px;
+  text-align: left;
+  border: 1px solid #ddd;
+}
+
+.test-amas-c .test-table th {
+  background-color: #f75b5b;
+  color: #fff;
+  text-align: center;
+}
+
+.test-amas-c .test-table td {
+  vertical-align: middle;
+}
+
+.test-amas-c .test-table label {
+  margin-right: 15px;
+}
+
+.submit-button {
+  background-color: #04546c;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  display: block;
+  margin: 20px auto 0 auto;
+}
+
+.submit-button:hover {
+  background-color: #067ba3;
+}
+
+.success-message {
+  color: green;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.error-message {
+  color: red;
+  text-align: center;
+  margin-top: 20px;
+}
+/*==========Datos test============*/
+.test-amas-c .contenido-test .datos-test{
+  margin-top: 4rem;
+  margin-bottom: 4rem;
+  margin-left: 15rem;
+}
+
+.test-amas-c .contenido-test .tet-cabeza h2{
+  text-align: center;
+  margin-left: 100rem;
+}
+
+.test-amas-c .test-table .respuestas {
+  background-color: #e4e4e4;
+  border-left: 2px solid green;
+  text-align: center;
+}
+
+.test-amas-c .test-table .preguntas{
+  width: 60%;
+}
+
+/*=====================*/
+.test-amas-c .cuadro-test {
+  margin-left: 15rem;
+  width: 60%;
+  border-collapse: collapse;
+}
+
+.test-amas-c .cuadro-test th,
+.test-amas-c .cuadro-test td {
+  padding: 10px;
+  text-align: left;
+  border: 1px solid #ddd;
+}
+
+.test-amas-c .cuadro-test th {
+  background-color: #f75b5b;
+  color: #fff;
+  text-align: center;
+}
+
+.test-amas-c .cuadro-test td {
+  vertical-align: middle;
+}
+
+.test-amas-c .cuadro-test tr:nth-child(even) {
+  background-color: #f1f1f1;
+}
+
+.test-amas-c .cuadro-test .respuestas {
+  border-left: 2px solid green;
+  text-align: center;
+  width: 20%;
+}
+
+.test-amas-c .cuadro-test .preguntas {
+  width: 60%;
+}
+
+/*==========================*/
+/*=================NUEVO===============*/
+/* Test2 styles */
+.test2 .cuadro-test {
+  margin-left: 15rem;
+  width: 40%;
+  border-collapse: collapse;
+}
+.test2 .contenido-test {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin-top: 8rem;
+}
+
+.test2 .test-cabeza {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.test2 .test-cabeza h2 {
+  margin: 0;
+  font-size: 24px;
+}
+
+.test2 .datos-test2,
+.test2 .datos-test {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.test2 .datos-test2 {
+  margin: 4rem 15rem;
+}
+
+.test2 .datos-test {
+  margin: 0 15rem 4rem;
+}
+
+.test2 .datos-test2 label,
+.test2 .datos-test label {
+  margin-right: 10px;
+}
+
+.test2 .datos-test2 input[type="text"],
+.test2 .datos-test input[type="text"] {
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-right: 10px;
+}
+
+.test2 .datos-test span {
+  margin-left: 10px;
+}
+
+.test2 .test-table {
+  width: 60%;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.test2 .test-table th,
+.test2 .test-table td {
+  padding: 10px;
+  text-align: left;
+  border: 1px solid #ddd;
+}
+
+.test2 .test-table th {
+  background-color: #f75b5b;
+  color: #fff;
+  text-align: center;
+}
+
+.test2 .test-table td {
+  vertical-align: middle;
+}
+
+.test2 .test-table tr:nth-child(even) {
+  background-color: #f1f1f1;
+}
+
+.test2 .test-table .preguntas {
+  width: 60%;
+}
+
+.submit-button {
+  background-color: #04546c;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  display: block;
+  margin: 20px auto 0 auto;
+}
+
+.submit-button:hover {
+  background-color: #067ba3;
+}
+
+.success-message {
+  color: green;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.error-message {
+  color: red;
+  text-align: center;
+  margin-top: 20px;
+}
+/*===============*/
+/* Estilos para .test3 */
+/* Estilos para .test2 */
+.test2 .contenido-test {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin-top: 8rem;
+}
+
+.test2 .test-cabeza {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.test2 .test-cabeza h2 {
+  margin: 0;
+  font-size: 24px;
+}
+
+.test2 .datos-test2,
+.test2 .datos-test {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.test2 .datos-test2 {
+  margin: 4rem 15rem;
+}
+
+.test2 .datos-test {
+  margin: 0 15rem 4rem;
+}
+
+.test2 .datos-test2 label,
+.test2 .datos-test label {
+  margin-right: 10px;
+}
+
+.test2 .datos-test2 input[type="text"],
+.test2 .datos-test input[type="text"] {
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-right: 10px;
+}
+
+.test2 .datos-test span {
+  margin-left: 10px;
+}
+
+.test2 .test-table {
+  width: 60%;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.test2 .test-table th,
+.test2 .test-table td {
+  padding: 10px;
+  text-align: left;
+  border: 1px solid #ddd;
+}
+
+.test2 .test-table th {
+  background-color: #f75b5b;
+  color: #fff;
+  text-align: center;
+}
+
+.test2 .test-table td {
+  vertical-align: middle;
+}
+
+.test2 .test-table tr:nth-child(even) {
+  background-color: #f1f1f1;
+}
+
+.test2 .test-table .respuestas {
+  background-color: #e4e4e4;
+  border-left: 2px solid green;
+  text-align: center;
+  width: 20%;
+}
+
+.test2 .test-table .preguntas {
+  width: 60%;
+}
+
+.submit-button {
+  background-color: #04546c;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  display: block;
+  margin: 20px auto 0 auto;
+}
+
+.submit-button:hover {
+  background-color: #067ba3;
+}
+
+.success-message {
+  color: green;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.error-message {
+  color: red;
+  text-align: center;
+  margin-top: 20px;
+}

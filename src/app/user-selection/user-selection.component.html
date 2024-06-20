@@ -1,0 +1,56 @@
+<div class="header">
+  <div class="header-content">
+    <div class="title">SISVITA</div>
+    <div class="header-center">
+      <marquee scrollAmount="9px">
+        <h1>FISI-Ingeniería de Sistemas</h1>
+      </marquee>
+    </div>
+    <div class="right-section">
+      <div class="unmsm-section">
+        <img src="assets/unmsm.png" alt="UNMSM Logo" class="unmsm-logo" />
+        <span class="unmsm-text">UNMSM</span>
+        <button class="menu-button" (click)="toggleMenu()">&#9776;</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="user-selection-container">
+  <div class="user-option">
+    <img src="assets/FondoEstudiantes.png" alt="Estudiantes" class="user-image"/>
+    <div class="user-option-content">
+      <h2>Pacientes</h2>
+      <button (click)="navigateTo('login')">Ingresar</button>
+    </div>
+  </div>
+  <div class="user-option">
+    <img src="assets/FondoApuntes.png" alt="Apuntes" class="user-image"/>
+    <div class="user-option-content">
+      <h2>Especialista</h2>
+      <button (click)="navigateTo('login-especialista')">Ingresar</button>
+    </div>
+  </div>
+  <div class="side-menu" [class.open]="menuOpen">
+    <div class="menu">
+      <div class="menu-header">
+        <span class="menu-title">MENU</span>
+        <button class="close-menu" (click)="toggleMenu()">X</button>
+      </div>
+      
+      <ul>
+        <li><a (click)="navigateTo('user-selection')">Iniciar sesión</a></li>
+        <li><a href="#">Misión</a></li>
+        <li><a href="#">Servicios ofrecidos</a></li>
+        <li><a href="#">Recursos online</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <a href="#">Términos y condiciones</a>
+  <p>Sistema de Vigilancia de Trastornos de la Ansiedad (SISVITA)</p>
+  <p>2024</p>
+
+</footer>
+  
