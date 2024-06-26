@@ -61,6 +61,30 @@
 
       <div *ngIf="selectedOption === 'consulta'">
         <h2>Consulta</h2>
+        <div class="filter-container">
+          <div class="filter-item">
+            <label for="tipoTest">Tipo de Test:</label>
+            <select id="tipoTest" [(ngModel)]="filtroTipoTest" (change)="filtrarPuntuaciones()">
+              <option value="">Todos</option>
+              <option value="Test de Beck">Test de Beck</option>
+              <option value="Test de Zung">Test de Zung</option>
+              <option value="Test de AMASC">Test de AMASC</option>
+            </select>
+          </div>
+          <div class="filter-item">
+            <label for="fecha">Fecha:</label>
+            <input type="date" id="fecha" [(ngModel)]="filtroFecha" (change)="filtrarPuntuaciones()">
+          </div>
+          <div class="filter-item">
+            <label for="nivelAnsiedad">Nivel de Ansiedad:</label>
+            <select id="nivelAnsiedad" [(ngModel)]="filtroNivelAnsiedad" (change)="filtrarPuntuaciones()">
+              <option value="">Todos</option>
+              <option value="verde">Verde</option>
+              <option value="ambar">Ámbar</option>
+              <option value="rojo">Rojo</option>
+            </select>
+          </div>
+        </div>
         <div class="table-container">
           <table class="styled-table">
             <thead>
@@ -75,7 +99,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let puntuacion of puntuaciones" (click)="selectPuntuacion(puntuacion)" [class.selected]="puntuacion === selectedPuntuacion">
+              <tr *ngFor="let puntuacion of puntuacionesFiltradas" (click)="selectPuntuacion(puntuacion)" [class.selected]="puntuacion === selectedPuntuacion">
                 <td>{{ puntuacion.nombre }}</td>
                 <td>{{ puntuacion.apellido_paterno }} {{ puntuacion.apellido_materno }}</td>
                 <td>{{ puntuacion.tipo_test }}</td>
@@ -94,6 +118,33 @@
           </table>
           <button [disabled]="!selectedPuntuacion" (click)="evaluar()" class="eval-button">Evaluar</button>
         </div>
+
+        <!-- Filtros adicionales para el mapa -->
+        <div class="filter-container">
+          <div class="filter-item">
+            <label for="tipoTestMapa">Tipo de Test (Mapa):</label>
+            <select id="tipoTestMapa" [(ngModel)]="filtroMapaTipoTest" (change)="filtrarPuntuacionesMapa()">
+              <option value="">Todos</option>
+              <option value="Test de Beck">Test de Beck</option>
+              <option value="Test de Zung">Test de Zung</option>
+              <option value="Test de AMASC">Test de AMASC</option>
+            </select>
+          </div>
+          <div class="filter-item">
+            <label for="fechaMapa">Fecha (Mapa):</label>
+            <input type="date" id="fechaMapa" [(ngModel)]="filtroMapaFecha" (change)="filtrarPuntuacionesMapa()">
+          </div>
+          <div class="filter-item">
+            <label for="nivelAnsiedadMapa">Nivel de Ansiedad (Mapa):</label>
+            <select id="nivelAnsiedadMapa" [(ngModel)]="filtroMapaNivelAnsiedad" (change)="filtrarPuntuacionesMapa()">
+              <option value="">Todos</option>
+              <option value="verde">Verde</option>
+              <option value="ambar">Ámbar</option>
+              <option value="rojo">Rojo</option>
+            </select>
+          </div>
+        </div>
+
         <!-- Contenedor para el mapa de calor -->
         <div id="heatmap" style="height: 400px; width: 100%; margin-top: 20px;"></div>
       </div>
@@ -121,20 +172,19 @@
           <div class="section3">
             <label for="observaciones">Observaciones:</label>
             <textarea id="observaciones" [(ngModel)]="observaciones"></textarea>
-
+      
             <label for="nivelAnsiedad">Nivel de ansiedad:</label>
             <input type="text" id="nivelAnsiedad" [(ngModel)]="nivelAnsiedad">
-
+      
             <label for="solicitudCita">Invitar a una Cita:</label>
             <select id="solicitudCita" [(ngModel)]="solicitudCita">
               <option value="Si">Si</option>
               <option value="No">No</option>
             </select>
-
+      
             <button (click)="guardarObservacion()">Guardar</button>
+            <button (click)="enviarCorreo()">Enviar Correo</button> <!-- Asegúrate de tener este botón -->
           </div>
         </div>
       </div>
-    </div>
-  </div>
-</div>
+      

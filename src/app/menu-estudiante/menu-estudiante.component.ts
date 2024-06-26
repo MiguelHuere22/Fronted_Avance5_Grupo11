@@ -101,72 +101,82 @@ export class MenuEstudianteComponent implements OnInit {
     event.preventDefault();
     console.log('Función enviarRespuestas llamada');
     console.log('Respuestas:', this.respuestas);
-  
+
     // Validar si todas las preguntas tienen respuesta
     const allAnswered = this.preguntas.every(pregunta => this.respuestas.hasOwnProperty(pregunta.id_pregunta));
     if (!allAnswered) {
-      Swal.fire({
-        icon: 'error',
-        title: 'Error',
-        text: 'Por favor, responde todas las preguntas antes de enviar.'
-      });
-      return;
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'Por favor, responde todas las preguntas antes de enviar.'
+        });
+        return;
     }
 
     const respuestasArray = Object.keys(this.respuestas).map((key: any) => ({
-      id_pregunta: Number(key),
-      texto_respuesta: this.respuestas[Number(key)]
+        id_pregunta: Number(key),
+        texto_respuesta: this.respuestas[Number(key)]
     }));
-  
+
     const id_persona_num = Number(this.id_persona);
     console.log('ID Persona:', id_persona_num);
     console.log('ID Test:', this.id_test);
-  
+
     const data = {
-      id_persona: id_persona_num,
-      id_test: this.id_test,
-      respuestas: respuestasArray
+        id_persona: id_persona_num,
+        id_test: this.id_test,
+        respuestas: respuestasArray
     };
-  
+
     console.log('Datos a enviar:', data);
-  
+
     this.preguntasService.enviarRespuestas(id_persona_num, this.id_test, respuestasArray).subscribe(
-      response => {
-        if (response.status_code === 201) {
-          this.mensajeExito = 'Respuestas enviadas correctamente';
-          this.mensajeError = '';
-          this.respuestas = {}; // Limpia las respuestas después de enviar
-          Swal.fire({
-            icon: 'success',
-            title: 'Éxito',
-            text: 'Respuestas enviadas correctamente',
-            confirmButtonText: 'OK'
-          }).then(() => {
-            this.selectedOption = 'realizar-test'; // Volver a la vista de realizar test
-          });
-        } else {
-          this.mensajeError = 'Error: No se pudo enviar el test';
-          this.mensajeExito = '';
-          console.error('Error sending responses:', response.msg);
-          Swal.fire({
-            icon: 'error',
-            title: 'Error',
-            text: 'No se pudo enviar el test. Por favor, intenta de nuevo.'
-          });
+        response => {
+            if (response.status_code === 201) {
+                this.mensajeExito = 'Respuestas enviadas correctamente';
+                this.mensajeError = '';
+                this.respuestas = {}; // Limpia las respuestas después de enviar
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Éxito',
+                    text: 'Respuestas enviadas correctamente',
+                    confirmButtonText: 'OK'
+                }).then(() => {
+                    // Mostrar el puntaje y la interpretación en una nueva alerta
+                    Swal.fire({
+                        title: 'Resultado',
+                        html: `<p>Puntaje obtenido: ${response.total_puntaje}</p>
+                               <p>Interpretación: ${response.interpretacion}</p>`,
+                        icon: 'info',
+                        confirmButtonText: 'OK'
+                    }).then(() => {
+                        this.selectedOption = 'realizar-test'; // Volver a la vista de realizar test
+                    });
+                });
+            } else {
+                this.mensajeError = 'Error: No se pudo enviar el test';
+                this.mensajeExito = '';
+                console.error('Error sending responses:', response.msg);
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: 'No se pudo enviar el test. Por favor, intenta de nuevo.'
+                });
+            }
+        },
+        error => {
+            this.mensajeError = 'Error: No se pudo enviar el test';
+            this.mensajeExito = '';
+            console.error('Error sending responses:', error);
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'No se pudo enviar el test. Por favor, intenta de nuevo.'
+            });
         }
-      },
-      error => {
-        this.mensajeError = 'Error: No se pudo enviar el test';
-        this.mensajeExito = '';
-        console.error('Error sending responses:', error);
-        Swal.fire({
-          icon: 'error',
-          title: 'Error',
-          text: 'No se pudo enviar el test. Por favor, intenta de nuevo.'
-        });
-      }
     );
-  }
+}
+
 
   registrarRespuesta(id_pregunta: number, texto_respuesta: string): void {
     this.respuestas[id_pregunta] = texto_respuesta;

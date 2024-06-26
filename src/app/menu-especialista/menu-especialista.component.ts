@@ -7,7 +7,7 @@ import { HttpClient } from '@angular/common/http';
 import Swal from 'sweetalert2';
 
 import * as L from 'leaflet';
-import  'leaflet.heat';
+import 'leaflet.heat';
 
 @Component({
   selector: 'app-menu-especialista',
@@ -29,6 +29,8 @@ export class MenuEspecialistaComponent implements OnInit {
   distrito: string = '';
   selectedOption: string = 'inicio';
   puntuaciones: any[] = [];
+  puntuacionesFiltradas: any[] = [];
+  puntuacionesMapa: any[] = [];
   selectedPuntuacion: any = null;
   preguntas: any[] = [];
   observaciones: string = '';
@@ -36,6 +38,14 @@ export class MenuEspecialistaComponent implements OnInit {
   solicitudCita: string = '';
   map: any;
   heatLayer: any;
+
+  filtroTipoTest: string = '';
+  filtroFecha: string = '';
+  filtroNivelAnsiedad: string = '';
+  
+  filtroMapaTipoTest: string = '';
+  filtroMapaFecha: string = '';
+  filtroMapaNivelAnsiedad: string = '';
 
   constructor(
     private router: Router,
@@ -52,12 +62,10 @@ export class MenuEspecialistaComponent implements OnInit {
   }
 
   loadUserData(): void {
-    console.log('Llamado a loadUserData');
     const personaDataString = this.localStorageService.getItem('personaData');
     if (personaDataString) {
       try {
         const personaData = JSON.parse(personaDataString);
-        console.log('Datos de la persona cargados:', personaData);
         if (personaData && typeof personaData === 'object') {
           this.nombres = personaData.nombres || '';
           this.apellidoPaterno = personaData.apellido_paterno || '';
@@ -68,14 +76,11 @@ export class MenuEspecialistaComponent implements OnInit {
           this.departamento = personaData.departamento || '';
           this.provincia = personaData.provincia || '';
           this.distrito = personaData.distrito || '';
-        } else {
-          console.error('Parsed persona data is not an object:', personaData);
         }
       } catch (error) {
         console.error('Error parsing persona data from localStorage:', error);
       }
     } else {
-      console.error('No persona data found in localStorage');
       this.router.navigate(['/login']);
     }
   }
@@ -92,9 +97,10 @@ export class MenuEspecialistaComponent implements OnInit {
       response => {
         if (response.status_code === 200) {
           this.puntuaciones = response.data;
+          this.puntuacionesFiltradas = this.puntuaciones;
+          this.puntuacionesMapa = this.puntuaciones;
           this.initMap();
           this.addHeatMapLayer();
-          console.log(this.puntuaciones);
         } else {
           console.error('Error fetching puntuaciones:', response.msg);
         }
@@ -110,7 +116,26 @@ export class MenuEspecialistaComponent implements OnInit {
     this.limpiarCamposEvaluacion();
     this.preguntas = [];
     this.obtenerPreguntasRespuestas(puntuacion.id_persona, puntuacion.id_test);
+  
+    // Obtener el correo del paciente
+    this.obtenerCorreoPaciente(puntuacion.id_persona);
   }
+  
+  obtenerCorreoPaciente(idPersona: number): void {
+    this.http.get<any>(`http://127.0.0.1:5000/usuarios/v1/correo/${idPersona}`).subscribe(
+      response => {
+        if (response.status_code === 200) {
+          this.selectedPuntuacion.correo = response.data.correo;
+        } else {
+          console.error('Error fetching correo:', response.msg);
+        }
+      },
+      error => {
+        console.error('Error fetching correo:', error);
+      }
+    );
+  }
+  
 
   limpiarCamposEvaluacion(): void {
     this.observaciones = '';
@@ -178,6 +203,25 @@ export class MenuEspecialistaComponent implements OnInit {
     );
   }
 
+  enviarCorreo(): void {
+    const data = {
+        id_persona: this.selectedPuntuacion.id_persona,
+        asunto: 'Resultados del test',
+        cuerpo: `Hola ${this.selectedPuntuacion.nombre},\n\nEstos son tus resultados...\n\nObservaciones: ${this.observaciones}\nNivel de ansiedad: ${this.nivelAnsiedad}\nInvitación a cita: ${this.solicitudCita}`
+    };
+
+    console.log(data); // Agrega este console.log para verificar los datos
+
+    this.http.post('http://127.0.0.1:5000/enviar-correo', data).subscribe(response => {
+        Swal.fire('Enviado', 'Correo enviado exitosamente', 'success');
+    }, error => {
+        console.error('Error enviando correo:', error); // Asegúrate de registrar el error
+        Swal.fire('Error', 'Hubo un problema al enviar el correo', 'error');
+    });
+}
+
+  
+
   logout(): void {
     this.localStorageService.clear();
     this.router.navigate(['/login']);
@@ -197,13 +241,32 @@ export class MenuEspecialistaComponent implements OnInit {
     if (this.heatLayer) {
       this.map.removeLayer(this.heatLayer);
     }
-    const heatPoints = this.puntuaciones.map(puntuacion => {
-      const lat = puntuacion.ubigeo.latitud;
-      const lng = puntuacion.ubigeo.longitud;
-      return [lat, lng, 100]; // 1 es la intensidad del punto de calor
-    });
+    const heatPoints = this.puntuacionesMapa
+      .filter(puntuacion => puntuacion.ubigeo.latitud && puntuacion.ubigeo.longitud)
+      .map(puntuacion => {
+        const lat = puntuacion.ubigeo.latitud;
+        const lng = puntuacion.ubigeo.longitud;
+        return [lat, lng, 2000];
+      });
     this.heatLayer = (L as any).heatLayer(heatPoints, { radius: 25 }).addTo(this.map);
-    
   }
-  
+
+  filtrarPuntuaciones(): void {
+    this.puntuacionesFiltradas = this.puntuaciones.filter(puntuacion => {
+      const coincideTipoTest = this.filtroTipoTest ? puntuacion.tipo_test === this.filtroTipoTest : true;
+      const coincideFecha = this.filtroFecha ? puntuacion.fecha.split(' ')[0] === this.filtroFecha : true;
+      const coincideNivelAnsiedad = this.filtroNivelAnsiedad ? puntuacion.color === this.filtroNivelAnsiedad : true;
+      return coincideTipoTest && coincideFecha && coincideNivelAnsiedad;
+    });
+  }
+
+  filtrarPuntuacionesMapa(): void {
+    this.puntuacionesMapa = this.puntuaciones.filter(puntuacion => {
+      const coincideTipoTest = this.filtroMapaTipoTest ? puntuacion.tipo_test === this.filtroMapaTipoTest : true;
+      const coincideFecha = this.filtroMapaFecha ? puntuacion.fecha.split(' ')[0] === this.filtroMapaFecha : true;
+      const coincideNivelAnsiedad = this.filtroMapaNivelAnsiedad ? puntuacion.color === this.filtroMapaNivelAnsiedad : true;
+      return coincideTipoTest && coincideFecha && coincideNivelAnsiedad;
+    });
+    this.addHeatMapLayer();
+  }
 }

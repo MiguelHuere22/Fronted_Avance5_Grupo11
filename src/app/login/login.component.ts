@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { AuthService } from '../service/auth.service';
 import Swal from 'sweetalert2';
 import { Router, RouterModule } from '@angular/router';
-import { LocalStorageService } from '../service/local-storage.service'; // Importar el servicio
+import { LocalStorageService } from '../service/local-storage.service';
 
 @Component({
   selector: 'app-login',
@@ -20,25 +20,25 @@ export class LoginComponent {
   constructor(
     private authService: AuthService, 
     private router: Router,
-    private localStorageService: LocalStorageService // Inyectar el servicio
+    private localStorageService: LocalStorageService
   ) {}
 
   onLogin(): void {
     this.authService.loginPaciente(this.username, this.password).subscribe(response => {
       if (response.status_code === 200) {
         const userData = response.data;
-        const personaData = response.data.persona; // Obtener los datos de la persona
+        const personaData = response.data.persona;
 
         this.localStorageService.setItem('authToken', 'true');
-        this.localStorageService.setItem('userData', JSON.stringify(userData)); // Usar el servicio
-        this.localStorageService.setItem('personaData', JSON.stringify(personaData)); // Guardar los datos de la persona
+        this.localStorageService.setItem('userData', JSON.stringify(userData));
+        this.localStorageService.setItem('personaData', JSON.stringify(personaData));
 
         Swal.fire({
           icon: 'success',
           title: 'Usuario encontrado',
           text: '¡Inicio de sesión exitoso!'
         }).then(() => {
-          this.router.navigate(['/menu-estudiante']); // Redirigir a menu-paciente
+          this.router.navigate(['/menu-estudiante']);
         });
       } else {
         Swal.fire({
